@@ -60,12 +60,17 @@ int main()
 
 				int serverID = addGameServerToPacket(inPacket, outPacket, address, port);
 
-				if (serverSocket.send(outPacket, address, port) == sf::Socket::Done) {
-					std::cout << "sent response to client." << std::endl;
-
-					if(serverID != 0)
-						notifyGameServer(address, port, serverID);
+				if (serverID != 0) {
+					if (notifyGameServer(address, port, serverID)) {
+						if (serverSocket.send(outPacket, address, port) == sf::Socket::Done) {
+							std::cout << "sent response to client." << std::endl;
+						}
+					}
+					else {
+						std::cout << "could not ping server!" << std::endl;
+					}
 				}
+
 			}
 		}
 		else {
@@ -144,7 +149,7 @@ sf::Uint32 addGameServerToPacket(sf::Packet & inPacket, sf::Packet & outPacket, 
 	return 0;
 }
 	
-void notifyGameServer(sf::IpAddress clientAddress, unsigned short clientPort, sf::Uint32 serverID) {
+bool notifyGameServer(sf::IpAddress clientAddress, unsigned short clientPort, sf::Uint32 serverID) {
 	sf::Packet outPacket;
 	outPacket << PROTOCOL_VERSION << sf::Uint8(0xFF) << sf::Uint32(clientAddress.toInteger()) << sf::Uint16(clientPort);
 
@@ -155,7 +160,13 @@ void notifyGameServer(sf::IpAddress clientAddress, unsigned short clientPort, sf
 
 			if (serverSocket.send(outPacket, serverAddress, serverPort) != sf::Socket::Done) {
 				std::cout << "failed to notify game server!" << std::endl;
+				return false;
 			}
+
+			return true;
 		}
 	}
+
+	std::cout << "did not find server with ID " << serverID << "!" << std::endl;
+	return false;
 }

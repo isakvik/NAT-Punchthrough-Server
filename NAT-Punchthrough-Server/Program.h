@@ -25,6 +25,6 @@ sf::UdpSocket serverSocket;
 
 int main();
 
-void registerGameServer(sf::IpAddress address, unsigned short port);
+void registerGameServer(sf::IpAddress address, unsigned short port, sf::Uint16 serverLocalPort);
 sf::Uint32 addGameServerToPacket(sf::Packet &inPacket, sf::Packet &outPacket, sf::IpAddress address, unsigned short port);
-void notifyGameServer(sf::IpAddress clientAddress, unsigned short clientPort, sf::Uint32 serverID);
+bool notifyGameServer(sf::IpAddress clientAddress, unsigned short clientPort, sf::Uint32 serverID);
