@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NAT_Punchthrough_Server", "NAT_Punchthrough_server\NAT_Punchthrough_server.vcxproj", "{79A7C133-793B-435C-89D4-7F9A5B55E8F4}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NAT-Punchthrough-Server", "NAT-Punchthrough-Server\NAT-Punchthrough-Server.vcxproj", "{79A7C133-793B-435C-89D4-7F9A5B55E8F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,6 +32,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {A2B046DE-638F-4D90-9313-8E6D2E172962}
+		SolutionGuid = {EF531AA6-0A66-4E96-A933-3450D0B9C31E}
 	EndGlobalSection
 EndGlobal
